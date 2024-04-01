@@ -5,7 +5,7 @@ import Home from './Components/Home';
 import Navbar from './Components/NavBar/Navbar'; 
 import {CallbackPage} from './Components/CallbackPage'; 
 import WelcomePage from './Components/WelcomePage';
-import SearchResults from './Components/SearchResults';
+import SearchResultsPage from './Components/SearchResultsPage';
 import ArtistDetailsPage from './Components/ArtistDetailsPage';
 import ShowUserConcerts from './Components/ShowUserConcerts';
 import UserProfile from './Components/UserProfile';
@@ -19,10 +19,10 @@ function App() {
           <Route path="/" element={<Home />} exact />
           <Route path="/callback" element={<CallbackPage />} />
           <Route path="/welcome" element={<WelcomePage />} />
-          <Route path="/search" element={<SearchResults />} />
           <Route path="/artist/:artistId" element={<ArtistDetailsPage />} />
           <Route path="/user-top-concerts" element={<ShowUserConcerts />} />
           <Route path="/user-profile" element={<UserProfile />} />
+          <Route path="/search-results" element={<SearchResultsPage />} />
           {/* You can add more routes here as your app expands */}
         </Routes>
       </div>

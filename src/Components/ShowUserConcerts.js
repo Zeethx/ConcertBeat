@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './ShowUserConcerts.css';
 
 const ShowUserConcerts = () => {
     const [artists, setArtists] = useState([]);
@@ -26,15 +27,18 @@ const ShowUserConcerts = () => {
 
     return (
         <div>
-            <h2>Your Top Artists</h2>
-            <ul>
+            <h1 className='artist-header'>Your Top Artists</h1>
+            <div className='artist-line'></div>
+            <div className="artist-grid">
                 {artists.map(artist => (
-                    <li key={artist.id} style={{ cursor: 'pointer' }} onClick={() => handleSelectArtist(artist.id)}>
-                        <img src={artist.images[0]?.url} alt={artist.name} style={{ width: '50px' }} />
-                        {artist.name}
-                    </li>
+                    <div key={artist.id} className="artist-card" onClick={() => handleSelectArtist(artist.id)}>
+                        <img src={artist.images[0]?.url || 'defaultArtistImage.jpg'} alt={artist.name} className="artist-image" />
+                        <div className="artist-info">
+                            <h3 className="artist-name">{artist.name}</h3>
+                        </div>
+                    </div>
                 ))}
-            </ul>
+            </div>
         </div>
     );
 };

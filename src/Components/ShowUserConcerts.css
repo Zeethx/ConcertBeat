@@ -1,0 +1,55 @@
+.artist-header {
+    color: #fff;
+    margin: 20px 0 10px 0;
+    font-size: 30px;
+    text-emphasis: bold;
+    text-align: center;
+}
+
+/* add a horizontal line */
+.artist-line {
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid #1DB954;
+}
+
+.artist-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    margin: 0 auto;
+    max-width: 80vw;
+}
+
+.artist-card {
+    background-color: #282828;
+    border-radius: 8px;
+    border: 1px solid #ffffff;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+}
+
+.artist-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.artist-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.artist-info {
+    padding: 15px;
+    color: #fff;
+}
+
+.artist-name {
+    margin: 0;
+    font-size: 18px;
+    color: #eeeded; /* Spotify green for the artist name */
+    text-align: center;
+}

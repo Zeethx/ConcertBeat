@@ -1,36 +1,32 @@
 import React from 'react';
+import './SearchResults.css';
 
 const SearchResults = ({ results, onSelectArtist }) => {
-    // Render function for artists
     const renderArtists = (artists) => {
         return artists.items.map((artist) => (
-            <div key={artist.id} className="search-result-item" onClick={() => onSelectArtist(artist.id)} style={{ cursor: 'pointer' }}>
-                <img src={artist.images[0]?.url} alt={artist.name} style={{ width: 100, height: 100 }} />
-                <div>{artist.name}</div>
+            <div key={artist.id} className="search-result-item" onClick={() => onSelectArtist(artist.id)}>
+                <img src={artist.images[0]?.url} alt={artist.name} className="sr-artist-image" />
+                <div className="sr-artist-details">
+                    <div className="sr-artist-name">{artist.name}</div>
+                    <div className="sr-artist-detail">Followers: {artist.followers.total.toLocaleString()}</div>
+                    <div className="sr-artist-detail">Genre: {artist.genres.join(', ')}</div>
+                </div>
             </div>
         ));
     };
-
-    // /Maybe needed for artist page
-    // const renderTracks = (tracks) => {
-    //     return tracks.items.map((track) => (
-    //         <div key={track.id} className="search-result-item">
-    //             <div>{track.name}</div>
-    //             <div>{track.artists.map(artist => artist.name).join(', ')}</div>
-    //         </div>
-    //     ));
-    // };
 
     return (
         <div className="search-results">
             {results.artists && (
                 <div>
-                    <h2>Artists</h2>
+                    <h2 className='search-results-header'>Artists</h2>
+                    <div className="search-line"></div>
                     {renderArtists(results.artists)}
                 </div>
             )}
         </div>
     );
 };
+
 
 export default SearchResults;

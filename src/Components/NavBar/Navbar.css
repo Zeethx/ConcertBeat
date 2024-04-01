@@ -3,21 +3,27 @@
     justify-content: space-between;
     align-items: center;
     color: white;
-    padding: 1rem;
-    margin-top: 1vh;
+    padding: 0rem;
+    position: fixed; /* Fix the navbar's position */
+    top: 0; /* Align to the top of the viewport */
+    left: 0; /* Align to the left of the viewport */
+    width: 100%; /* Ensure the navbar spans the full viewport width */
+    background-color: #151515; /* Provide a background color for visibility */
+    z-index: 1000; 
+    box-shadow: 0 2px 4px rgba(0,0,0,0.5); 
 }
 
-
-
 .nav-logo {
-    height: 30px;
+    height: 50px;
+    padding: 10px;
+    padding-left: 29px;
 }
 
 .nav-links {
     list-style: none;
     display: flex;
     margin: 0;
-    padding: 0;
+    padding-right: 30px;
 }
 
 .nav-links li {
@@ -32,23 +38,6 @@
 
 .nav-links a:hover {
     color: #aaa;
-}
-
-.nav-item-dropdown {
-    position: relative;
-}
-
-.dropdown-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    background-color: #444;
-    padding: 10px;
-    display: none;
-}
-
-.nav-item-dropdown:hover .dropdown-menu {
-    display: block;
 }
 
 @media (max-width: 768px) {

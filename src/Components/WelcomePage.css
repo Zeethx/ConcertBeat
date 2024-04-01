@@ -1,0 +1,109 @@
+.logo-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 5vh;
+
+}
+.welcome-line{
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid #1DB954;
+    margin-bottom: 20px;
+}
+
+.welcome-concerts-header{
+    color: #FFFFFF;
+    margin: 50px 0 10px 0;
+    font-size: 30px;
+    text-emphasis: bold;
+    text-align: center;
+}
+
+.welcome-logo {
+    height: 18vmin;
+
+}
+.welcome-logo:hover {
+    transform: scale(1.01);
+}
+
+/* Styling for the search form */
+.welcome-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+.welcome-form input[type="text"] {
+    width: 100%;
+    max-width: 500px; /* Limit the width of the input field */
+    padding: 12px 20px;
+    font-size: 16px;
+    border: 2px solid #a0a0a0; /* Spotify green for the border */
+    background-color: #fff;
+    color: #333;
+    border-radius: 50px;
+    outline: none;
+    transition: all 0.3s ease-in-out;
+}
+
+.welcome-form input[type="text"]:focus {
+    border-color: #17a844; /* A darker shade of green for focus */
+    box-shadow: 0 0 8px rgba(29, 185, 84, 0.6); /* Subtle glow effect */
+}
+
+.welcome-form button.search-spotify {
+    padding: 12px 24px;
+    background-color: #1DB954; /* Spotify green for the button */
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    outline: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.welcome-form button.search-spotify:hover, .welcome-form button.search-spotify:focus {
+    background-color: #17a844; /* Darker green on hover/focus */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Adds a subtle shadow */
+}
+
+
+/* Layout for recommended concerts */
+.recommended-concerts {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.concert-card {
+    background-color: #282828;
+    border-radius: 8px;
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.concert-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.concert-image {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.concert-card h3, .concert-card p {
+    margin: 10px 0;
+}

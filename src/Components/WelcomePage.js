@@ -1,64 +1,87 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSearchSpotify } from './Search';
-import SearchResults from './SearchResults';
-import '../App.css';
+import './WelcomePage.css';
 
 const WelcomePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
-    const { searchSpotify, searchResults, isLoading, error } = useSearchSpotify();
-    const Navigate = useNavigate();
+    const navigate = useNavigate();
+    const [recommendedConcerts, setRecommendedConcerts] = useState([]);
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        const accessToken = localStorage.getItem('accessToken');
-        if (accessToken) {
-            searchSpotify(searchQuery, 'artist', accessToken);
-        } else {
-            console.error('Access token not found');
+    useEffect(() => {
+        fetchRecommendedConcerts();
+    }, []);
+
+    const fetchRecommendedConcerts = async () => {
+        const apiKey = process.env.REACT_APP_TICKETMASTER_API_KEY;
+        const fetchUrl = `https://app.ticketmaster.com/discovery/v2/events.json?apikey=${apiKey}&classificationName=music&countryCode=CA`;
+
+        try {
+            const response = await fetch(fetchUrl);
+            if (!response.ok) {
+                throw new Error('Failed to fetch recommended concerts');
+            }
+            const data = await response.json();
+            const events = data._embedded?.events.map(event => ({
+                id: event.id,
+                name: event.name,
+                date: event.dates.start.localDate,
+                location: event._embedded.venues[0].name,
+                image: event.images[0].url
+            })).slice(0, 15);
+
+            // filter to only show the same artist once
+            const uniqueEvents = [];
+            const seenArtists = new Set();
+            for (const event of events) {
+                if (!seenArtists.has(event.name)) {
+                    seenArtists.add(event.name);
+                    uniqueEvents.push(event);
+                }
+            }
+            setRecommendedConcerts(uniqueEvents);
+        } catch (error) {
+            console.error('Error:', error);
         }
     };
 
-    const handleSelectArtist = (artistId) => {
-        Navigate(`/artist/${artistId}`);
+    const handleSearch = (e) => {
+        e.preventDefault();
+        if (searchQuery.trim()) {
+            navigate(`/search-results?query=${encodeURIComponent(searchQuery)}&type=artist`);
+        } else {
+            console.error('Search query is required');
+        }
     };
 
-    const showUserTopConcerts = () => {
-        Navigate('/user-top-concerts');
-    }
-
-    const showUserProfile = () => {
-        Navigate('/user-profile');
-    }
-
     return (
-        <div>
-            <h1>Welcome to ConcertBeat!</h1>
-            <form onSubmit={handleSearch}>
+        <div className="welcome-page-container">
+            <div className="logo-div">
+                <img src="images/TextLogo.png" alt="ConcertBeat logo" className="welcome-logo" />
+            </div>
+            
+            <form onSubmit={handleSearch} className='welcome-form'>
                 <input
                     type="text"
-                    placeholder="Search for artists..."
+                    placeholder="Search for artists"
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
+                    className="search-input"
                 />
                 <button type="submit" className="search-spotify">Search</button>
             </form>
 
-            {isLoading && <p>Loading...</p>}
-            {error && <p>Error: {error}</p>}
-
-            <SearchResults results={searchResults} onSelectArtist={handleSelectArtist} />
-            <br /><br />
-
-            <button className="show-user-top-concerts-button" onClick={showUserTopConcerts}>
-                Show my top concerts
-            </button>
-            <br /><br />
-
-            <button className="show-user-profile-button" onClick={showUserProfile}>
-                Show Profile
-            </button>
-            <br /><br />
+            <h2 className='welcome-concerts-header'>ConcertBeat's Recommended Concerts</h2>
+            <div className="welcome-line"></div>            
+            <div className="recommended-concerts">
+                {recommendedConcerts.map(concert => (
+                    <div key={concert.id} className="concert-card" onClick={() => navigate(`/concert/${concert.id}`)}>
+                        <img src={concert.image} alt={concert.name} className="concert-image" />
+                        <h3>{concert.name}</h3>
+                        <p>Date: {concert.date}</p>
+                        <p>Location: {concert.location}</p>
+                    </div>
+                ))}
+            </div>
         </div>
     );
 };
