@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './UserProfile.css';
 
 const UserProfile = () => {
     const [userProfile, setUserProfile] = useState(null);
@@ -29,18 +30,18 @@ const UserProfile = () => {
             }
         };
 
+        
         fetchUserProfile();
     }, [spotifyAccessToken, navigate]);
 
     return (
-        <div>
-            <h2>Your Spotify Profile</h2>
+        <div className='user-profile'>
+            <h2 className="profile-header">Your Spotify Profile</h2>
             {userProfile ? (
-                <div>
-                    <img src={userProfile.images[0]?.url} alt={userProfile.display_name || 'User profile'} style={{ width: '50px' }} />
-                    <p>Display name: {userProfile.display_name}</p>
-                    <p>Email: {userProfile.email}</p>
-                    <p>Country: {userProfile.country}</p>
+                <div className='profile-div'>
+                    <img src={userProfile.images[0]?.url} alt={userProfile.display_name || 'User profile'}  className='profile-image' />
+                    <p className='profile-p'>Display name: {userProfile.display_name}</p>
+                    <p className='profile-p'>Country: {userProfile.country}</p>
                 </div>
             ) : (
                 <p>Loading your profile...</p>

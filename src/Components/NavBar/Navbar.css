@@ -4,12 +4,10 @@
     align-items: center;
     color: white;
     padding: 1rem;
+    margin-top: 1vh;
 }
 
-.navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-}
+
 
 .nav-logo {
     height: 30px;
@@ -23,7 +21,7 @@
 }
 
 .nav-links li {
-    margin-left: 20px;
+    margin: 0 1rem 0 1rem;
 }
 
 .nav-links a {

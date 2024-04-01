@@ -1,7 +1,7 @@
 .home-div {
     /* Make it full width and centered*/
     margin: 0 auto;
-    margin-top: 5vh;
+    margin-top: 10vh;
     width: 80%;
     text-align: center;
   }
@@ -10,6 +10,8 @@
     height: 22vmin;
     pointer-events: none;
   }
+
+    
   
   /* Design the login button */
 .login-button {

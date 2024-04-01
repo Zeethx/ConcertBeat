@@ -12,8 +12,8 @@ const Navbar = () => {
                 </Link>
             </div>
             <ul className="nav-links">
+                <li><Link to="/user-top-concerts">Your Concerts</Link></li>
                 <li><Link to="/user-profile">Profile</Link></li>
-                <li><Link to="/user-top-concerts">Top Concerts</Link></li>
 
             </ul>
         </nav>

@@ -8,7 +8,8 @@ const scopes = [
   'user-read-email',
   'playlist-read-private',
   'user-top-read',
-  'user-library-read'
+  'user-library-read',
+  'user-follow-read'
   // add more scopes as needed
 ];
 const authUrl = `https://accounts.spotify.com/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=${encodeURIComponent(scopes.join(' '))}&response_type=code&show_dialog=true`;
