@@ -3,19 +3,14 @@
 }
 
 body{
-  background-color: #282c34;
+  background-color: #242424;
   color: white;
-  font-family: Arial, sans-serif;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+  font-family: Outfit, sans-serif;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+  .logo {
+    animation: normal;
   }
 }
 

@@ -27,6 +27,10 @@ const WelcomePage = () => {
         Navigate('/user-top-concerts');
     }
 
+    const showUserProfile = () => {
+        Navigate('/user-profile');
+    }
+
     return (
         <div>
             <h1>Welcome to ConcertBeat!</h1>
@@ -46,16 +50,15 @@ const WelcomePage = () => {
             <SearchResults results={searchResults} onSelectArtist={handleSelectArtist} />
             <br /><br />
 
-            <button className="show-user-top-concerts" onClick={showUserTopConcerts}>
+            <button className="show-user-top-concerts-button" onClick={showUserTopConcerts}>
                 Show my top concerts
             </button>
             <br /><br />
-            <button className="logout-button" onClick={() => {
-                localStorage.removeItem('accessToken');
-                window.location.href = '/';
-            }}>
-                Logout from Spotify
+
+            <button className="show-user-profile-button" onClick={showUserProfile}>
+                Show Profile
             </button>
+            <br /><br />
         </div>
     );
 };

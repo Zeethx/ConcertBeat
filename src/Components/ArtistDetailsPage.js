@@ -1,7 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-// Async function to fetch artist details, top tracks, albums, and concerts
+async function fetchConcertsByCountry(artistName, ticketmasterApiKey, countryCode) {
+    try {
+        const url = `https://app.ticketmaster.com/discovery/v2/events.json?keyword=${encodeURIComponent(artistName)}&countryCode=${countryCode}&apikey=${ticketmasterApiKey}`;
+        const response = await fetch(url);
+        const data = await response.json();
+        return data._embedded ? data._embedded.events : [];
+    } catch (error) {
+        console.error('Error fetching concerts:', error);
+        return [];
+    }
+
+}
+
 async function fetchArtistData(artistId, accessToken, ticketmasterApiKey) {
     const headers = { 'Authorization': `Bearer ${accessToken}` };
 
@@ -15,19 +27,20 @@ async function fetchArtistData(artistId, accessToken, ticketmasterApiKey) {
         const albumsResponse = await fetch(`https://api.spotify.com/v1/artists/${artistId}/albums`, { headers });
         const albumsData = await albumsResponse.json();
 
-        // Assuming artist names are unique enough for concert searches. Adjust as needed.
-        const concertsResponse = await fetch(`https://app.ticketmaster.com/discovery/v2/events.json?keyword=${encodeURIComponent(artistData.name)}&apikey=${ticketmasterApiKey}`);
-        const concertsData = await concertsResponse.json();
+        // Fetch concerts for US and Canada separately
+        const usConcerts = await fetchConcertsByCountry(artistData.name, ticketmasterApiKey, 'US');
+        const caConcerts = await fetchConcertsByCountry(artistData.name, ticketmasterApiKey, 'CA');
 
         return {
             artist: artistData,
             topTracks: topTracksData.tracks,
             albums: albumsData.items,
-            concerts: concertsData._embedded ? concertsData._embedded.events : [],
+            usConcerts: usConcerts,
+            caConcerts: caConcerts,
         };
     } catch (error) {
         console.error('Error fetching artist data:', error);
-        throw error; 
+        throw error;
     }
 }
 
@@ -36,8 +49,9 @@ const ArtistDetailsPage = () => {
     const [artistDetails, setArtistDetails] = useState(null);
     const [topTracks, setTopTracks] = useState([]);
     const [albums, setAlbums] = useState([]);
-    const [concerts, setConcerts] = useState([]);
-    const ticketmasterApiKey = process.env.REACT_APP_TICKETMASTER_API_KEY; // Ensure you have this env variable set up
+    const [usConcerts, setUsConcerts] = useState([]);
+    const [caConcerts, setCaConcerts] = useState([]);
+    const ticketmasterApiKey = process.env.REACT_APP_TICKETMASTER_API_KEY;
 
     useEffect(() => {
         const accessToken = localStorage.getItem('accessToken');
@@ -46,7 +60,8 @@ const ArtistDetailsPage = () => {
                 setArtistDetails(data.artist);
                 setTopTracks(data.topTracks);
                 setAlbums(data.albums);
-                setConcerts(data.concerts);
+                setUsConcerts(data.usConcerts);
+                setCaConcerts(data.caConcerts);
             });
         }
     }, [artistId, ticketmasterApiKey]);
@@ -61,17 +76,18 @@ const ArtistDetailsPage = () => {
             <img src={artistDetails.images[0]?.url} alt={artistDetails.name} style={{ width: '200px' }} />
             <p>Followers: {artistDetails.followers.total}</p>
             <h2>Top Tracks</h2>
-            <ul>
+            <ol>
                 {topTracks.map(track => <li key={track.id}>{track.name}</li>)}
-            </ul>
+            </ol>
             <h2>Albums</h2>
             <ul>
                 {albums.map(album => <li key={album.id}>{album.name}</li>)}
             </ul>
-            <h2>Concerts</h2>
-            {concerts.length > 0 ? (
+            
+            <h2>Concerts in the US</h2>
+            {usConcerts.length > 0 ? (
                 <ul>
-                    {concerts.map(concert => (
+                    {usConcerts.map(concert => (
                         <li key={concert.id}>
                             {concert.name} - {concert.dates.start.localDate}
                             <br />
@@ -79,11 +95,22 @@ const ArtistDetailsPage = () => {
                         </li>
                     ))}
                 </ul>
-            ) : (
-                <p>No concerts found for this artist.</p>
-            )}
+            ) : <p>No concerts found for this artist in the US.</p>}
+
+            <h2>Concerts in Canada</h2>
+            {caConcerts.length > 0 ? (
+                <ul>
+                    {caConcerts.map(concert => (
+                        <li key={concert.id}>
+                            {concert.name} - {concert.dates.start.localDate}
+                            <br />
+                            <a href={concert.url} target="_blank" rel="noopener noreferrer">Tickets</a>
+                        </li>
+                    ))}
+                </ul>
+            ) : <p>No concerts found for this artist in Canada.</p>}
         </div>
     );
-};
+}
 
 export default ArtistDetailsPage;

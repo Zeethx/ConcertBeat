@@ -1,0 +1,36 @@
+.home-div {
+    /* Make it full width and centered*/
+    margin: 0 auto;
+    margin-top: 5vh;
+    width: 80%;
+    text-align: center;
+  }
+  
+  .logo {
+    height: 22vmin;
+    pointer-events: none;
+  }
+  
+  /* Design the login button */
+.login-button {
+    margin-top: 10vh;
+    background-color: #1DB954;
+    color: #F4F4F4;
+    border: none;
+    padding: 10px 20px;
+    font-size: 2rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    /* Shadows */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .login-button:hover {
+    /* increase size */
+    transform: scale(1.1);
+    background-color: #1DB954;
+  }
+  
+  /* Design the logout button */
