@@ -23,6 +23,10 @@ const WelcomePage = () => {
         Navigate(`/artist/${artistId}`);
     };
 
+    const showUserTopConcerts = () => {
+        Navigate('/user-top-concerts');
+    }
+
     return (
         <div>
             <h1>Welcome to ConcertBeat!</h1>
@@ -40,7 +44,12 @@ const WelcomePage = () => {
             {error && <p>Error: {error}</p>}
 
             <SearchResults results={searchResults} onSelectArtist={handleSelectArtist} />
+            <br /><br />
 
+            <button className="show-user-top-concerts" onClick={showUserTopConcerts}>
+                Show my top concerts
+            </button>
+            <br /><br />
             <button className="logout-button" onClick={() => {
                 localStorage.removeItem('accessToken');
                 window.location.href = '/';

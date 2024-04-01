@@ -5,6 +5,7 @@ import {CallbackPage} from './Components/CallbackPage';
 import WelcomePage from './Components/WelcomePage';
 import SearchResults from './Components/SearchResults';
 import ArtistDetailsPage from './Components/ArtistDetailsPage';
+import ShowUserConcerts from './Components/ShowUserConcerts';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/welcome" element={<WelcomePage />} />
         <Route path="/search" element={<SearchResults />} />
         <Route path="/artist/:artistId" element={<ArtistDetailsPage />} />
+        <Route path="/user-top-concerts" element={<ShowUserConcerts />} />
         {/* You can add more routes here as your app expands */}
       </Routes>
     </Router>
