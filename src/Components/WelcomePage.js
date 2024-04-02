@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WelcomePage.css';
+import { useAuth } from './Auth';
+import { SpotifyLoginButton } from './SpotifyLoginButton';
 
 const WelcomePage = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const navigate = useNavigate();
     const [recommendedConcerts, setRecommendedConcerts] = useState([]);
+    const { isAuthenticated } = useAuth();
 
     useEffect(() => {
         fetchRecommendedConcerts();
@@ -58,17 +61,24 @@ const WelcomePage = () => {
             <div className="logo-div">
                 <img src="images/TextLogo.png" alt="ConcertBeat logo" className="welcome-logo" />
             </div>
-            
-            <form onSubmit={handleSearch} className='welcome-form'>
-                <input
-                    type="text"
-                    placeholder="Search for artists"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    className="search-input"
-                />
-                <button type="submit" className="search-spotify">Search</button>
-            </form>
+            {isAuthenticated ? (
+                <form onSubmit={handleSearch} className='welcome-form'>
+                    <input
+                        type="text"
+                        placeholder="Search for artists"
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="search-input"
+                    />
+                    <button type="submit" className="search-spotify">Search</button>
+                </form>
+            ) : (
+                <div className="welcome-login">
+                    <p className='login-message'>Login with Spotify to use all features</p>
+                    <SpotifyLoginButton />
+                </div>
+            )}
+
 
             <h2 className='welcome-concerts-header'>ConcertBeat's Recommended Concerts</h2>
             <div className="welcome-line"></div>            

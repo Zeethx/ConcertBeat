@@ -9,24 +9,31 @@ import SearchResultsPage from './Components/SearchResultsPage';
 import ArtistDetailsPage from './Components/ArtistDetailsPage';
 import ShowUserConcerts from './Components/ShowUserConcerts';
 import UserProfile from './Components/UserProfile';
+import { AuthProvider } from './Components/Auth';
+import ProtectedRoute from './Components/ProtectedRoute';
 
 function App() {
   return (
-    <Router>
-      <div>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} exact />
-          <Route path="/callback" element={<CallbackPage />} />
-          <Route path="/welcome" element={<WelcomePage />} />
-          <Route path="/artist/:artistId" element={<ArtistDetailsPage />} />
-          <Route path="/user-top-concerts" element={<ShowUserConcerts />} />
-          <Route path="/user-profile" element={<UserProfile />} />
-          <Route path="/search-results" element={<SearchResultsPage />} />
-          {/* You can add more routes here as your app expands */}
-        </Routes>
-      </div>
-    </Router>
+    <AuthProvider>
+      <Router>
+        <div>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} exact />
+            <Route path="/callback" element={<CallbackPage />} />
+            <Route path="/welcome" element={<WelcomePage />} />
+            <Route path="/artist/:artistId" element={<ArtistDetailsPage />} />
+            <Route path="/user-top-concerts" element={<ProtectedRoute>
+              <ShowUserConcerts /></ProtectedRoute>} />
+            <Route path="/user-profile" element={<ProtectedRoute>
+              <UserProfile /></ProtectedRoute>} />
+            <Route path="/search-results" element={<ProtectedRoute>
+              <SearchResultsPage /></ProtectedRoute>} />
+            
+          </Routes>
+        </div>
+      </Router>
+    </AuthProvider>
   );
 }
 

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import './ArtistDetailsPage.css';
 
 async function fetchConcertsByCountry(artistName, ticketmasterApiKey, countryCode) {
     try {
@@ -67,48 +68,65 @@ const ArtistDetailsPage = () => {
     }, [artistId, ticketmasterApiKey]);
 
     if (!artistDetails) {
-        return <div>Loading artist details...</div>;
+        return
     }
 
     return (
         <div>
-            <h1>{artistDetails.name}</h1>
-            <img src={artistDetails.images[0]?.url} alt={artistDetails.name} style={{ width: '200px' }} />
-            <p>Followers: {artistDetails.followers.total}</p>
-            <h2>Top Tracks</h2>
-            <ol>
-                {topTracks.map(track => <li key={track.id}>{track.name}</li>)}
-            </ol>
-            <h2>Albums</h2>
-            <ul>
-                {albums.map(album => <li key={album.id}>{album.name}</li>)}
-            </ul>
-            
-            <h2>Concerts in the US</h2>
-            {usConcerts.length > 0 ? (
-                <ul>
-                    {usConcerts.map(concert => (
-                        <li key={concert.id}>
-                            {concert.name} - {concert.dates.start.localDate}
-                            <br />
-                            <a href={concert.url} target="_blank" rel="noopener noreferrer">Tickets</a>
-                        </li>
-                    ))}
-                </ul>
-            ) : <p>No concerts found for this artist in the US.</p>}
+            <div className='artist-details-page'>
+            <h1 className='details-h1'>Artist Details</h1>
+            <section className="d-artist-card">
+                <div>
+                    <img src={artistDetails.images[0]?.url} alt={artistDetails.name} className='d-artist-img' />
+                    <h1 className='d-artist-name'>{artistDetails.name}</h1>
+                    <p className='followers'>Followers: {artistDetails.followers.total.toLocaleString()}</p>
+                </div>
+                <div className="d-artist-info">
+                    <div className="top-tracks">
+                        <h2>Top Tracks</h2>
+                        <ol>
+                            {topTracks.slice(0, 7).map(track => <li key={track.id}>{track.name}</li>)}
+                        </ol>
+                    </div>
+                    <div className="albums">
+                        <h2>Albums</h2>
+                        <ul>
+                            {albums.slice(0, 7).map(album => <li key={album.id}>{album.name}</li>)}
+                        </ul>
+                    </div>
+                </div>
+            </section>
+            </div>
+            <div className='concerts-container'>
+            <h1 className='details-h1'>Available Concerts</h1>
+                <section className="concerts">
+                <h2 className='details-h2'>Concerts in the US</h2>
+                {usConcerts.length > 0 ? (
+                    <ul>
+                        {usConcerts.map(concert => (
+                            <li key={concert.id}>
+                                {concert.name} | <span className='concert-date'>{concert.dates.start.localDate}</span>
+                                <br />
+                                <a href={concert.url} target="_blank" rel="noopener noreferrer">Tickets</a>
+                            </li>
+                        ))}
+                    </ul>
+                ) : <p className='concert-error'>No concerts found for this artist in the US.</p>}
 
-            <h2>Concerts in Canada</h2>
-            {caConcerts.length > 0 ? (
-                <ul>
-                    {caConcerts.map(concert => (
-                        <li key={concert.id}>
-                            {concert.name} - {concert.dates.start.localDate}
-                            <br />
-                            <a href={concert.url} target="_blank" rel="noopener noreferrer">Tickets</a>
-                        </li>
-                    ))}
-                </ul>
-            ) : <p>No concerts found for this artist in Canada.</p>}
+                <h2 className='details-h2'>Concerts in Canada</h2>
+                {caConcerts.length > 0 ? (
+                    <ul>
+                        {caConcerts.map(concert => (
+                            <li key={concert.id}>
+                                {concert.name} | <span className='concert-date'>{concert.dates.start.localDate}</span>
+                                <br />
+                                <a href={concert.url} target="_blank" rel="noopener noreferrer">Tickets</a>
+                            </li>
+                        ))}
+                    </ul>
+                ) : <p className='concert-error'>No concerts found for this artist in Canada.</p>}
+                </section>
+            </div>
         </div>
     );
 }

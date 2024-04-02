@@ -5,7 +5,7 @@ export const CallbackPage = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+  const [error] = useState('');
 
   useEffect(() => {
     const code = new URLSearchParams(location.search).get('code');
@@ -28,22 +28,20 @@ export const CallbackPage = () => {
           // Store tokens in localStorage
           localStorage.setItem('accessToken', data.access_token);
           localStorage.setItem('refreshToken', data.refresh_token);
-          // Redirect the user to the home page upon successful login
           navigate('/welcome');
         })
         .catch(error => {
           setLoading(false);
-          setError('Failed to login. Please try again.');
           console.error('Error during token exchange:', error);
         });
     } else {
       setLoading(false);
-      setError('No code found in the URL to exchange for tokens.');
+      navigate('/welcome');
     }
   }, [location, navigate]); // Added 'navigate' to the dependency array
 
   if (loading) {
-    return <div>Processing your login...</div>;
+    return 
   }
 
   if (error) {

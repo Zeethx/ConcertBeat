@@ -1,0 +1,159 @@
+.artist-details-page {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.d-artist-card {
+    background-color: #121212; /* Dark background for the card */
+    color: #FFF; /* Light text for visibility */
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 80vw;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1); 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.d-artist-img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 5px solid #1DB954; 
+    margin-top: 20px;
+}
+
+.d-artist-info {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Two columns for tracks and albums */
+    gap: 20px;
+    align-items: start;
+}
+
+.d-artist-name {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.followers {
+    font-size: 1rem;
+    color: #888;
+    text-align: center;
+    margin-left: 0 auto;
+}
+
+.details-h2 {
+    font-size: 1.5rem;
+    color: #1DB954; 
+    margin: 0; 
+}
+
+.details-h1{
+    font-size: 2rem;
+    color: #ffffff; 
+    margin: 10px 0; 
+}
+
+.d-artist-info ol, ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none; /* Remove default list styling */
+    color: #aaa;
+}
+
+li {
+    padding: 5px 0; /* Add some vertical padding to each list item */
+}
+
+.concerts-container {
+    min-width: 90vw;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.concerts {
+    margin: 0 auto;
+    min-width: 90vw;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #121212; /* Dark theme for the concerts section */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+}
+
+.details-h2 {
+    color: #ffffff; /* Spotify green for headers */
+    margin-bottom: 16px; /* Spacing between the header and the list */
+    border-bottom: 1px solid #1DB954; /* Green line under headers */
+    padding-bottom: 5px;
+}
+
+
+.concert-date {
+    color: #f3f3f3; /* Light grey text for dates */
+
+}
+
+.concerts ul {
+    list-style-type: none; /* Remove default list style */
+    padding: 0;
+    margin: 0;
+}
+
+.concerts li {
+    padding: 10px 0; /* Spacing between list items */
+    border-bottom: 1px solid #333; /* Separator for each item */
+}
+
+.concerts li:last-child {
+    border-bottom: none; /* No separator for the last item */
+}
+
+.concerts a {
+    color: #1DB954; /* Green links for consistency */
+    text-decoration: none; /* No underline */
+    transition: color 0.3s ease; /* Smooth color transition for hover */
+}
+
+.concerts a:hover {
+    color: #0fdd62; /* Lighter green on hover */
+    text-decoration: underline; /* Underline on hover for clarity */
+}
+
+.concert-error {
+    color: #888; /* Light grey text for errors/no results */
+    margin-top: 10px;
+}
+
+/* Additional media queries for responsiveness */
+@media (max-width: 768px) {
+    .artist-details-page {
+        padding: 10px; /* Slightly reduce padding on smaller screens */
+        flex-direction: column;
+        align-items: center;
+        
+    }
+
+    .artist-info {
+        grid-template-columns: 1fr; /* Stack tracks and albums on smaller screens */
+    }
+
+    .artist-img {
+        width: 120px;
+        height: 120px;
+    }
+
+    .concerts-container {
+        padding: 15px; /* Slightly reduce padding on smaller screens */
+    }
+}

@@ -13,6 +13,16 @@
     margin-bottom: 20px;
 }
 
+.welcome-login{
+    text-align: center;
+}
+.login-message{
+    color: #aeaeae;
+    font-size: 0.8rem;
+    margin-top: 20px;
+
+}
+
 .welcome-concerts-header{
     color: #FFFFFF;
     margin: 50px 0 10px 0;
@@ -85,7 +95,7 @@
 }
 
 .concert-card {
-    background-color: #282828;
+    background-color: #121212;
     border-radius: 8px;
     padding: 10px;
     cursor: pointer;
@@ -104,6 +114,12 @@
     border-radius: 8px;
 }
 
-.concert-card h3, .concert-card p {
+.concert-card h3 {
     margin: 10px 0;
+    color: #f2f2f2;
+}
+
+.concert-card p {
+    margin: 10px 0;
+    color: #aeaeae;
 }
