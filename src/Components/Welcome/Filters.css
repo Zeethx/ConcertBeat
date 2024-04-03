@@ -1,0 +1,86 @@
+.filters-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 42px; /* Adjust as needed */
+}
+
+.filter-toggle-button {
+    background-color: #1DB954;
+    border: none;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.filters-box {
+    position: absolute;
+    top: 40px; /* Adjust distance from button */
+    left: 50%;
+    transform: translateX(-50%); /* Center the box */
+    background: #ffffff;
+    border-radius: 15px; /* Softer round corners */
+    padding: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+    width: 250px; /* Set a specific width */
+}
+
+.filters-box input{
+    width: 95%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    margin-right: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+}
+.filters-box select {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 8px; 
+}
+
+.apply-filters-button {
+    background-color: #1DB954;
+    color: white;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    border-radius: 8px; 
+    width: 100%; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+}
+
+.apply-filters-button:hover {
+    background-color: #17a74b;
+}
+
+.filter-icon {
+    fill: white; 
+}
+
+
+.filters-box input[type="date"] {
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    color: #444;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+}
+
+/* Style the focus state of inputs for accessibility */
+.filters-box input:focus,
+.filters-box select:focus,
+.apply-filters-button:focus {
+    outline: none;
+    border-color: #1DB954;
+    box-shadow: 0 0 0 3px rgba(29, 185, 84, 0.5);
+}

@@ -1,0 +1,60 @@
+.home-div {
+  position: relative; /* This ensures that child elements can be positioned relative to this container */
+  margin: 0 auto;
+  margin-top: 10vh;
+  width: 80%;
+  text-align: center;
+}
+
+.logo {
+  height: 22vmin;
+  pointer-events: none; /* I assume you want the logo to be non-clickable, remove this if not */
+  margin-bottom: 11vh;
+}
+.login-button-div {
+  display: flex;
+  justify-content: center;
+}
+
+.login-button {
+  background-color: #1DB954;
+  color: #F4F4F4;
+  border: none;
+  padding: 10px 20px;
+  font-size: 2rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.login-button:hover {
+  transform: scale(1.1);
+  background-color: #1DB954;
+}
+/* New class for the pop-up message */
+.popup-div {
+  position: fixed;
+  top: 60px; /* Adjust as needed */
+  left: 38px; /* Adjust as needed */
+  padding: 10px;
+  border-radius: 8px;
+  width: max-content;
+  z-index: 10;
+}
+
+.popup-message {
+  position: relative;
+  color: #ffffff;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.code-text{
+  margin-top: 30px;
+  z-index: 1000;
+}
+
+.spotify-code{
+  margin-top: -18px;
+}

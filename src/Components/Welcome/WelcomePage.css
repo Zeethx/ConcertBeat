@@ -31,6 +31,13 @@
     text-align: center;
 }
 
+.header-text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
 .welcome-logo {
     height: 18vmin;
 
@@ -64,6 +71,7 @@
 .welcome-form input[type="text"]:focus {
     border-color: #17a844; /* A darker shade of green for focus */
     box-shadow: 0 0 8px rgba(29, 185, 84, 0.6); /* Subtle glow effect */
+    
 }
 
 .welcome-form button.search-spotify {
@@ -122,4 +130,11 @@
 .concert-card p {
     margin: 10px 0;
     color: #aeaeae;
+}
+
+.no-concerts-found{
+    color: #aeaeae;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: 20px;
 }

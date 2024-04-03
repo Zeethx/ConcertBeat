@@ -1,0 +1,59 @@
+.concert-details {
+    width: 80vw;
+    margin: 40px auto;
+    padding: 20px;
+    background-color: #121212;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    text-align: center;
+    color: #333;
+}
+
+.concert-details .concert-name {
+    margin-bottom: 20px;
+    color: #ffffff; /* Spotify green for branding */
+}
+
+.concert-info p{
+    margin: 10px 0;
+    color: #ffffff;
+}
+.concert-info a {
+    margin: 10px 0;
+}
+
+.concert-info a.buy-tickets-button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #1DB954;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.concert-info a.buy-tickets-button:hover {
+    background-color: #17a34a; /* A slightly darker green */
+}
+
+.concert-main-image {
+    max-width: 500px;
+    height: auto;
+    margin-top: 50px;
+    border-radius: 10%;
+    border: #1DB954 2px solid;
+}
+
+.concert-line {
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid #1DB954;
+    margin-bottom: 20px;
+}
+
+/* You may need media queries for responsive adjustments */
+@media (max-width: 768px) {
+    .concert-details {
+        margin: 20px;
+    }
+}
