@@ -1,4 +1,4 @@
-![ConcertBeat](public\images\TextLogo.png)
+![ConcertBeat](https://github.com/Zeethx/ConcertBeat/blob/master/public/images/TextLogo.png)
 
 ConcertBeat is your pulse for live music, connecting you with your favorite artists and live concert experiences. Utilizing Spotify's robust library and Ticketmaster's extensive event listings, ConcertBeat is your go-to application for finding and tracking upcoming concerts and live events.
 
