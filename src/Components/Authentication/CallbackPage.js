@@ -10,7 +10,7 @@ export const CallbackPage = () => {
   useEffect(() => {
     const code = new URLSearchParams(location.search).get('code');
     if (code) {
-      fetch('http://localhost:5000/api/spotify/callback', { 
+      fetch('https://concertbeat-backend.vercel.app/api/spotify/callback', { 
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
