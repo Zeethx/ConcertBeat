@@ -9,7 +9,7 @@ const ShowUserConcerts = () => {
 
     useEffect(() => {
         if (spotifyAccessToken) {
-            fetch('http://localhost:5000/api/spotify/top-artists', {
+            fetch('https://concertbeat-backend.vercel.app/api/spotify/top-artists', {
                 headers: { 'Authorization': `Bearer ${spotifyAccessToken}` },
             })
             .then(response => response.ok ? response.json() : Promise.reject('Failed to fetch top artists'))

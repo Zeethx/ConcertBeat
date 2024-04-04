@@ -16,7 +16,7 @@ const UserProfile = () => {
             }
 
             try {
-                const response = await fetch('http://localhost:5000/api/spotify/user-profile', {
+                const response = await fetch('https://concertbeat-backend.vercel.app/api/spotify/user-profile', {
                     headers: { 'Authorization': `Bearer ${spotifyAccessToken}` },
                 });
                 if (!response.ok) {
