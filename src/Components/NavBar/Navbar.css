@@ -43,15 +43,14 @@
 
 @media (max-width: 768px) {
     .nav-links {
-        flex-direction: column;
+        flex-direction: row;
         align-items: center;
+        gap: 20px;
     }
 
     .nav-links li {
         margin: 10px 0;
     }
 
-    .dropdown-menu {
-        position: static;
-    }
+    
 }

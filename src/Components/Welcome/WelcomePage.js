@@ -90,7 +90,7 @@ const WelcomePage = () => {
             )}
             <div className='header-text'>
                 <h2 className='welcome-concerts-header'>ConcertBeat's Recommended Concerts</h2>
-                <Filters onApply={applyFilters} />
+                <Filters className="filter-icon" onApply={applyFilters} />
             </div>
             <div className="welcome-line"></div>            
             <div className="recommended-concerts">

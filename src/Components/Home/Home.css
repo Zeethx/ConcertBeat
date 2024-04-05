@@ -58,3 +58,34 @@
 .spotify-code{
   margin-top: -18px;
 }
+
+@media (max-width: 768px) {
+  .home-div {
+    margin-top: 10vh;
+  }
+
+  .logo {
+    margin-bottom: 5vh;
+    margin-left: -20px;
+  }
+
+  .login-button {
+    font-size: 1.5rem;
+  }
+
+  .popup-div {
+    top: 55px;
+    left: 35px;
+  }
+
+  .popup-message {
+    font-size: 0.8rem;
+  }
+
+  .spotify-code{
+    margin-top: -10px;
+    width: 80vw;
+
+  }
+  
+}
